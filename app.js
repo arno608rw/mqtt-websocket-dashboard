@@ -37,35 +37,35 @@ client.on('message', function(topic, message){
     'payload':String(message)});
 });
 
-http.createServer(function(request, response) {
+// http.createServer(function(request, response) {
 
-  var uri = url.parse(request.url).pathname
-    , filename = path.join(process.cwd(), uri);
+//   var uri = url.parse(request.url).pathname
+//     , filename = path.join(process.cwd(), uri);
 
-  fs.exists(filename, function(exists) {
-    if(!exists) {
-      response.writeHead(404, {"Content-Type": "text/plain"});
-      response.write("404 Not Found\n");
-      response.end();
-      return;
-    }
+//   fs.exists(filename, function(exists) {
+//     if(!exists) {
+//       response.writeHead(404, {"Content-Type": "text/plain"});
+//       response.write("404 Not Found\n");
+//       response.end();
+//       return;
+//     }
 
-    if (fs.statSync(filename).isDirectory()) filename += '/index.html';
+//     if (fs.statSync(filename).isDirectory()) filename += '/index.html';
 
-    fs.readFile(filename, "binary", function(err, file) {
-      if(err) {
-        response.writeHead(500, {"Content-Type": "text/plain"});
-        response.write(err + "\n");
-        response.end();
-        return;
-      }
+//     fs.readFile(filename, "binary", function(err, file) {
+//       if(err) {
+//         response.writeHead(500, {"Content-Type": "text/plain"});
+//         response.write(err + "\n");
+//         response.end();
+//         return;
+//       }
 
-      response.writeHead(200);
-      response.write(file, "binary");
-      response.end();
-    });
-  });
-}).listen(parseInt(port, 10));
+//       response.writeHead(200);
+//       response.write(file, "binary");
+//       response.end();
+//     });
+//   });
+// }).listen(parseInt(port, 10));
 
 https.createServer(options, function (request, response) {
   // response.writeHead(200);
@@ -97,7 +97,7 @@ https.createServer(options, function (request, response) {
       response.end();
     });
   });
-  
-}).listen(8000);
 
-console.log("Static file server running at\n  => http://localhost:" + port + "/\nCTRL + C to shutdown");
+}).listen(parseInt(port, 10));
+
+console.log("Static file server running at\n  => https://localhost:" + port + "/\nCTRL + C to shutdown");
