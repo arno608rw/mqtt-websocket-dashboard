@@ -68,11 +68,13 @@ client.on('message', function(topic, message){
 // }).listen(parseInt(port, 10));
 
 https.createServer(options, function (request, response) {
+
   // response.writeHead(200);
   // response.end("hello world\n");
 
-  var uri = url.parse(request.url).pathname
-    , filename = path.join(process.cwd(), uri);
+  var uri = url.parse(request.url).pathname, filename = path.join(process.cwd(), uri);
+
+  console.log("uri", uri);
 
   fs.exists(filename, function(exists) {
     if(!exists) {
