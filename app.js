@@ -5,7 +5,7 @@ var http = require("http"),
     url = require("url"),
     path = require("path"),
     fs = require("fs")
-    port = process.argv[2] || 80;
+    port = process.argv[2] || 8888;
 
 var io  = require('socket.io').listen(5000);
 var client  = mqtt.connect('mqtt://127.0.0.1');
